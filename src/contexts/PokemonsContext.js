@@ -1,7 +1,7 @@
-import { useEffect, useState, createContext, useContext } from "react";
-import axios from "axios";
+import { useEffect, useState, createContext, useContext } from 'react';
+import axios from 'axios';
 
-import UserContext from "../contexts/UserContext";
+import UserContext from '../contexts/UserContext';
 
 const PokemonsContext = createContext();
 export default PokemonsContext;
@@ -15,13 +15,15 @@ export function PokemonsProvider({ children }) {
     }, [token?.token]);
 
     function updatePokemons() {
-        axios.get(`${process.env.REACT_APP_API_BASE_URL}/pokemons`, {
-            headers: {
-                Authorization: `Bearer ${token?.token}`
-            }
-        }).then(response => {
-            setPokemons(response.data);
-        });
+        axios
+            .get(`${process.env.REACT_APP_API_BASE_URL}/pokemons`, {
+                headers: {
+                    Authorization: `Bearer ${token?.token}`,
+                },
+            })
+            .then((response) => {
+                setPokemons(response.data);
+            });
     }
 
     return (
